@@ -29,6 +29,7 @@ body {
 
 .display {
   display: flex;
+  flex-wrap: wrap;
   justify-content: end;
   align-items: flex-end;
   height: 70px;
@@ -80,11 +81,11 @@ body {
 
 .clearButton {
   width: 148px;
-  background-color: rgb(216, 20, 20);
 }
 
 .clearButton,
 .backspaceButton {
+  background-color: rgb(216, 20, 20);
   font-size: 23px;
 }
 
