@@ -6,7 +6,7 @@ let xString = '';
 let yString = '';
 let typingX = true;
 let typingY = false;
-let resultDisplayed = false;
+let calcSquareRoot = false;
 let operator = '';
 let result = 0;
 
@@ -19,47 +19,13 @@ const clearButton = document.querySelector('button.clearButton');
 const backspaceButton = document.querySelector('button.backspaceButton');
 const operatorButtons = document.querySelectorAll('button.operatorButton');
 
-// CALCULATION FUNCTIONS
-const add = (x, y) => {
-  return x + y;
-};
-const subtract = (x, y) => {
-  return x - y;
-};
-const multiply = (x, y) => {
-  return x * y;
-};
-const divide = (x, y) => {
-  return x / y;
-};
-const exponent = (x, y) => {
-  return x ** y;
-};
-const operate = (operator, x, y) => {
-  if (operator === '+') {
-    return add(x, y);
-  }
-  if (operator === '-') {
-    return subtract(x, y);
-  }
-  if (operator === '*' || operator === '×') {
-    return multiply(x, y);
-  }
-  if (operator === '÷' || operator === '/') {
-    return divide(x, y);
-  }
-  if (operator === '^') {
-    return exponent(x, y);
-  }
-  return 'Invalid operator';
-};
-
 // BUTTON CLICK HANDLERS
 const handleNumPress = (e) => {
   if (e.type === 'click') {
     if (typingX) {
       xString += e.target.textContent;
       x = Number(xString);
+      console.log('x is ', x);
       numbers.textContent = x;
     }
     if (typingY) {
@@ -93,10 +59,17 @@ const handleOperatorPress = (e) => {
   if (e.type === 'keydown') {
     operator = e.key;
   }
+  if (operator === '√') {
+    calcSquareRoot = true;
+  }
   if (typingX) {
     typingX = false;
     typingY = true;
-    numbers.textContent = xString + ' ' + operator + ' ';
+    if (operator !== '!') {
+      numbers.textContent = xString + ' ' + operator + ' ';
+    } else {
+      numbers.textContent = xString + operator;
+    }
   }
   if (typingY) {
     // TODO: Evaluate and display result of X operate Y
@@ -125,9 +98,15 @@ const handlePlusMinusPress = () => {
 plusMinusButton.addEventListener('click', handlePlusMinusPress);
 
 const handleEqualPress = () => {
+  if (calcSquareRoot) {
+    result = operate(operator, x);
+    x = result;
+    xString = x.toString();
+    numbers.textContent = x;
+  }
   if (typingX) {
     numbers.textContent = x;
-    resultDisplayed = true;
+    // resultDisplayed = true;
   }
   if (typingY) {
     // Set x equal to result, display x
