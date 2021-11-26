@@ -1,10 +1,15 @@
-body {
+html, body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  flex-direction: column;
   font-family: Helvetica;
-  background-color: rgb(220, 220, 220);
-  /* background: linear-gradient(white, whitesmoke); */
+  background-image: linear-gradient(rgb(245, 185, 111), rgb(235, 235, 152));
 }
 
 .outerContainer,
@@ -71,12 +76,12 @@ body {
   cursor: pointer;
 }
 
-/* .calcButton:hover {
-  box-shadow: rgb(215, 215, 215) 1.5px 1.5px 1.5px 1.5px;
-} */
+.calcButton:hover {
+  transform: scale(1.07);
+}
 
 .calcButton:active {
-  box-shadow: none;
+  transform: scale(1);
 }
 
 .clearButton {
@@ -89,17 +94,17 @@ body {
   font-size: 23px;
 }
 
-.backspaceButton:hover {
+/* .backspaceButton:hover {
   background-color: rgb(216, 20, 20);
 }
 
 .numButton:hover {
   background-color: rgb(34, 238, 34);
-}
+} */
 
 .operatorButton:hover,
 .equalButton:hover,
 .plusMinusButton:hover,
 .decimalButton:hover {
-  background-color: rgb(32, 235, 238);
+  /* background-color: rgb(32, 235, 238); */
 }

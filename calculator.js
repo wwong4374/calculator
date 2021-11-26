@@ -157,7 +157,7 @@ const handleEqualPress = () => {
 };
 equalButton.addEventListener('click', handleEqualPress);
 document.addEventListener('keydown', (e) => {
-  if (e.key === '=') { handleEqualPress(); }
+  if (e.key === '=' || e.key === 'Enter') { handleEqualPress(); }
 });
 
 const handleBackspacePress = () => {
