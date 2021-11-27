@@ -7,12 +7,9 @@ let xString = '';
 let yString = '';
 let xInfinity = false;
 let yInfinity = false;
-// let xStringDisplayed = '';
-// let yStringDisplayed = '';
 let typingX = true;
 let typingY = false;
 let typingDecimal = false;
-// let calcSquareRoot = false;
 let operator = '';
 let result = 0;
 
@@ -41,6 +38,7 @@ const checkNumberRange = () => {
 
 // BUTTON CLICK HANDLERS
 const handleNumPress = (e) => {
+  typingDecimal = false;
   if (e.type === 'click') {
     if (typingX) {
       if (!xInfinity) {
@@ -167,7 +165,10 @@ const handleDecimalPress = () => {
       numbers.textContent = xString;
     }
     if (typingY) {
-
+      yString += '.';
+      y = Number(yString);
+      checkNumberRange();
+      numbers.textContent = `${xString} ${operator} ${yString}`;
     }
   }
 };
