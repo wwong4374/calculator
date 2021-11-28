@@ -6,7 +6,8 @@ html, body {
   height: 100%;
 }
 
-body {
+body,
+.legendContainer {
   flex-direction: column;
   font-family: Helvetica;
   background-image: linear-gradient(rgb(223, 203, 179), rgb(235, 235, 152));

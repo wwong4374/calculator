@@ -55,6 +55,9 @@ const handleNumPress = (e) => {
       if (!yInfinity) {
         yString += e.target.id;
         y = Number(yString);
+        if (yString.length > 10) {
+          yString = y.toExponential().toString();
+        }
         checkNumberRange();
         numbers.textContent = `${xString} ${operator} ${yString}`;
       }
@@ -65,10 +68,10 @@ const handleNumPress = (e) => {
       if (!xInfinity) {
         xString += e.key;
         x = Number(xString);
-        checkNumberRange();
         if (xString.length > 10) {
           xString = x.toExponential().toString();
         }
+        checkNumberRange();
         numbers.textContent = xString;
       }
     }
@@ -76,6 +79,9 @@ const handleNumPress = (e) => {
       if (!yInfinity) {
         yString += e.key;
         y = Number(yString);
+        if (yString.length > 10) {
+          yString = y.toExponential().toString();
+        }
         checkNumberRange();
         numbers.textContent = `${xString} ${operator} ${yString}`;
       }
@@ -97,7 +103,11 @@ const handleEqualPress = () => {
     result = operate(operator, x, y);
     x = Math.round(result * 10000000000) / 10000000000;
     xString = x.toString();
+    if (xString.length > 10) {
+      xString = x.toExponential(11).toString();
+    }
     typingX = true;
+    checkNumberRange();
     numbers.textContent = xString;
     // Reset y
     y = 0;
@@ -186,7 +196,8 @@ const handleBackspacePress = () => {
   if (typingY) {
     yString = yString.slice(0, yString.length - 1);
     y = Number(yString);
-    numbers.textContent = yString;
+    // numbers.textContent = yString;
+    numbers.textContent = `${xString} ${operator} ${yString}`;
   }
 };
 backspaceButton.addEventListener('click', handleBackspacePress);
